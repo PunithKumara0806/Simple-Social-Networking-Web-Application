@@ -1,5 +1,6 @@
 <?php
     require_once 'header.php';
+   
 
     if(!$loggedin) die("</div></body></html>");
 
@@ -28,6 +29,9 @@
 
     if(!empty($_FILES['image']['name'])){
         $saveto = "$user.jpg";
+        echo "<pre>";
+        print_r($_FILES);
+        echo "</pre>";
         if(!move_uploaded_file($_FILES['image']['tmp_name'], $saveto)){
             echo "<script>alert('not able to move file');</script>";
         };

@@ -27,7 +27,7 @@
         showProfile($view);
         
         echo <<<_END
-        <form method='post' action='messages.php?view=$view'>
+        <form  method='post' action='messages.php?view=$view' style='float:right;width:45%;'>
         <fieldset data-role="controlgroup" data-type="horizontal">
         <legend>Type here to leave a message</legend>
         <input type='radio' name='pm' id='public' value='0' checked='checked'>
@@ -35,7 +35,7 @@
         <input type='radio' name='pm' id='private' value='1'>
         <label for="private">Private</label>
         </fieldset>
-        <textarea name='text'></textarea>
+        <textarea  name='text'></textarea>
         <input data-transition='slide' type='submit' value='Post Message'>
         </form><br>
         _END;
@@ -55,7 +55,13 @@
             $row = $result->fetch_array(MYSQLI_ASSOC);
             if ($row['pm'] == 0 || $row['auth'] == $user || $row['recip'] == $user)
             {
-                echo date('M jS \'y g:ia:', $row['time']);
+                if((time() - $row['time']) < 24*60*60){ // if the diff is less a day it shows today
+                    echo "Today " .date('g:ia',$row['time'])."&nbsp;&nbsp;&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp :";
+                }
+                elseif((time() - $row['time']) < 2*24*60*60){
+                    echo "Yesterday " .date('g:ia',$row['time'])."&nbsp;&nbsp&nbsp&nbsp&nbsp:";
+                }
+                else echo date('M jS \'y g:ia', $row['time'])."&nbsp:";
                 echo " <a href='messages.php?view=" . $row['auth'] .
                 "'>" . $row['auth']. "</a> ";
                 if ($row['pm'] == 0)

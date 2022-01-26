@@ -5,11 +5,11 @@
 body {
     width :700px;
     margin :20px auto;
-    background:#f8f8f8;
+    background:rgb(101, 179, 202);
     border :1px solid #888;
 }
 html {
-    background:#fff
+    background:rgb(183, 223, 235);
 }
 img {
     border :1px solid black;
@@ -66,4 +66,7 @@ img {
 }
 #used {
     margin-top:50px;
+}
+.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper{
+    color:white;
 }

@@ -11,7 +11,6 @@ echo <<<_INIT
         <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width',initial-scale=1'>
         <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-        <link rel='stylesheet' href='styles.css'>
         <script src='javascript.js'></script>
         <script 
             src="https://code.jquery.com/jquery-2.2.4.min.js" 
@@ -21,6 +20,7 @@ echo <<<_INIT
             src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js" 
             integrity="sha256-Lsk+CDPOzTapLoAzWW0G/WeQeViS3FMzywpzPZV8SXk=" 
             crossorigin="anonymous"></script>
+        <link rel='stylesheet' href='styles.css'>
 _INIT;
 
     require_once 'functions.php';
@@ -36,14 +36,14 @@ _INIT;
 echo <<<_MAIN
         <title>Blue Nest: $userstr</title>
     </head>
-    <body>
-    <div data-role='page'>
+    <body style='background:#bfd2d9'>
+    <div data-role='page'style='background:#bfd2d9'>
         <div data-role='header'>
             <div id='logo'
                 class='center'>B<img alt='bluenest' id='blue' width='50px' src='bluenest.jpg'>lue Nest</div>
             <div class='username'>$userstr</div>
         </div>
-        <div data-role='content'>
+        <div data-role='content' >
 
 _MAIN;
 
