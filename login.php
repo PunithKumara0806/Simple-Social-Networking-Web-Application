@@ -18,6 +18,8 @@
             else{
                 $_SESSION['user'] = $user;
                 $_SESSION['pass'] = $pass;
+                echo "<script>alert('You are logged in')</script>";
+                header('Location: http://localhost/blue_nest/members.php');
                 die("You are now logged in. 
                         Please <a data-transition='slide' href='members.php?view=$user'
                         >click here</a> to continue

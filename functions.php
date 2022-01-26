@@ -12,7 +12,10 @@ function queryMysql($query){
     global $conn;
     // echo "$query<br>";
     $result = $conn->query($query);
-    if(!$result) die('Query failed to execute');
+    if(!$result){
+        echo "$result<br>";
+        die('Query failed to execute');
+    }
     return $result;
 }
 

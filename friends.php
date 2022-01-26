@@ -39,10 +39,14 @@
     $following = array_diff($following, $mutual);
     $friends = FALSE;
     echo "<br>";
+
+    $friends_count = queryMysql("SELECT * FROM friend_count WHERE user='$user'");
+    $count = $friends_count->fetch_array(MYSQLI_ASSOC);
+    $count = $count['count'];
  
     if (sizeof($mutual))
     {
-    echo "<span class='subhead'>$name2 mutual friends</span><ul>";
+    echo "<span class='subhead'>$name2 mutual friends ($count)</span><ul>";
     foreach($mutual as $friend)
         echo "<li><a data-transition='slide'
         href='members.php?view=$friend'>$friend</a>";

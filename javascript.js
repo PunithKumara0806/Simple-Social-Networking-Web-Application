@@ -1,8 +1,3 @@
-if(!window.navigator.onLine){
-    alert("Connect to internet for styles");
-}
-
-
 function O(i)
 {
  return typeof i == 'object' ? i : document.getElementById(i)

@@ -42,6 +42,63 @@
             INDEX(user(6))'
         );
 
+        createTable(
+            'friend_count',
+            'user VARCHAR(16),
+            count INT,
+            INDEX(user(6))'
+        );
+
+    //     //triggers
+
+    //     //initializes the friend_count table;
+    //     queryMysql('
+    //         create trigger `friend_counter_init`
+    //         after insert 
+    //         on `members`
+    //         for each row
+    //         begin
+    //             insert into `friend_count` values(new.user,0);
+    //         end;
+    //     ');
+    //     echo "done friend_init<br>";
+    //     //increases friend_count 
+    //     queryMysql('
+    //     delimiter $
+    //         create trigger friend_counter_incre
+    //         after insert 
+    //         on friends
+    //         for each row 
+    //         begin
+    //             if ((exists(select * from friends where user = new.user and friend = new.friend))
+    //             and (exists(select * from friends where user = new.friend and friend = new.user))) then 
+    //             update friend_count set count = count+1 where user=new.user;
+    //             update friend_count  set count = count+1 where user = new.friend;
+    //         end if;
+
+    //         end$
+    //     delimiter  ;
+
+    //     ');
+    //     //decrease friend_count;
+    //     queryMysql('
+            
+    //     delimiter $
+    //         create trigger friend_counter_decre
+    //         before delete
+    //         on friends
+    //         for each row
+    //         begin
+                    
+    //             if ((exists(select * from friends where user = old.user and friend = old.friend))
+    //             and (exists(select * from friends where user = old.friend and friend = old.user))) then 
+    //             update friend_count set count = count-1 where user=old.user;
+    //             update friend_count  set count = count-1 where user = old.friend;
+    //         end if;
+    //         end $
+    //     delimiter ;
+    // ');
+
     ?>
     <br>...done
     </body>

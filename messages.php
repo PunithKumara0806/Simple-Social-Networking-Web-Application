@@ -43,7 +43,7 @@
         if (isset($_GET['erase']))
         {
             $erase = sanitizeString($_GET['erase']);
-            queryMysql("DELETE FROM messages WHERE id=$erase AND recip='$user'");
+            queryMysql("DELETE FROM messages WHERE id=$erase AND auth='$user'");
         }
         
         $query = "SELECT * FROM messages WHERE recip='$view' ORDER BY time DESC";

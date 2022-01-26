@@ -12,11 +12,7 @@ echo <<<_INIT
         <meta name='viewport' content='width=device-width',initial-scale=1'>
         <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
         <link rel='stylesheet' href='styles.css'>
-        <script src='javascript.js'>
-        if(!window.navigator.onLine){
-            alert("cannot use style in offline");
-        }
-        </script>
+        <script src='javascript.js'></script>
         <script 
             src="https://code.jquery.com/jquery-2.2.4.min.js" 
             integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" 
