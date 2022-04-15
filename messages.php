@@ -38,6 +38,10 @@
         <textarea  name='text'></textarea>
         <input data-transition='slide' type='submit' value='Post Message'>
         </form><br>
+        <form method='post' action='messages.php?view=$view' style='margin:0px;width:200px;'>
+        <input type='text' name='search' placeholder='Search messages...' style='display:inline-block; width:200px;'>
+        <input type='submit' id='search_icon' style='display:inline;background-color:blue;width:200px;' data-icon='search'>
+        </form>
         _END;
         date_default_timezone_set('UTC');
         if (isset($_GET['erase']))
@@ -45,41 +49,61 @@
             $erase = sanitizeString($_GET['erase']);
             queryMysql("DELETE FROM messages WHERE id=$erase AND auth='$user'");
         }
-        
-        $query = "SELECT * FROM messages WHERE recip='$view' ORDER BY time DESC";
-        $result = queryMysql($query);
-        $num = $result->num_rows;
+
+        if(empty($_POST['search']))
+        {
+            $query = "SELECT * FROM messages WHERE recip='$view' ORDER BY time DESC";
+            $result = queryMysql($query);
+            $num = $result->num_rows;
+        }
+        else{
+            $search = sanitizeString($_POST['search']);
+            if(preg_match('/%.*%/',$search))
+                $query = "SELECT * FROM messages WHERE recip='$view' AND message LIKE '$search'";
+            else
+                $query = "SELECT * FROM messages WHERE recip='$view' AND MATCH(message) AGAINST('$search') ORDER BY time DESC";
+            $result = queryMysql($query);
+            $num = $result->num_rows;
+        }
+        echo "<br><br><br><br><br>";
+        echo "<table>";
+        echo "<tbody id='msg'>";
         
         for ($j = 0 ; $j < $num ; ++$j)
         {
+            echo "<tr>";
             $row = $result->fetch_array(MYSQLI_ASSOC);
+            $time = $row['time'] + 5*60*60 + 30*60;
             if ($row['pm'] == 0 || $row['auth'] == $user || $row['recip'] == $user)
             {
                 if((time() - $row['time']) < 24*60*60){ // if the diff is less a day it shows today
-                    echo "Today " .date('g:ia',$row['time'])."&nbsp;&nbsp;&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp :";
+                    echo "<td>Today </td><td>" .date('g:ia',$time)." </td>";
                 }
                 elseif((time() - $row['time']) < 2*24*60*60){
-                    echo "Yesterday " .date('g:ia',$row['time'])."&nbsp;&nbsp&nbsp&nbsp&nbsp:";
+                    echo "<td>Yesterday </td><td>" .date('g:ia',$time)."</td>";
                 }
-                else echo date('M jS \'y g:ia', $row['time'])."&nbsp:";
-                echo " <a href='messages.php?view=" . $row['auth'] .
-                "'>" . $row['auth']. "</a> ";
-                if ($row['pm'] == 0)
-                    echo "wrote: &quot;" . $row['message'] . "&quot; ";
-                else
-                    echo "whispered: <span class='whisper'>&quot;" .
-                $row['message']. "&quot;</span> ";
+                else echo "<td>".date('M jS \'y',$time)."</td><td>".date('g:ia', $time)."</td>";
+                echo " <td><a href='messages.php?view=" . $row['auth'] ."'>" . $row['auth']. "</a></td> ";
+                if ($row['pm'] == 0){
+                 echo "<td>wrote:</td><td> &quot;".$row['message']."&quot;</td>";
+
+                }
+                else{
+                     echo "<td>whispered:</td><td> &quot;".$row['message']."&quot;</td>";
+                }
                 if ($row['recip'] == $user)
-                    echo "[<a href='messages.php?view=$view" .
-                "&erase=" . $row['id'] . "'>erase</a>]";
-                echo "<br>";
+                    echo "<td>[<a href='messages.php?view=$view" .
+                "&erase=" . $row['id'] . "'>erase</a>]</td>";
             }
+            echo "</tr>";
         }
+        echo "</tbody>";
+        echo "</table>";
+        echo "<br>";
     }
     if (!$num)
         echo "<br><span class='info'>No messages yet</span><br><br>";
-    echo "<br><a data-role='button'
-    href='messages.php?view=$view'>Refresh messages</a>";
+    echo "<br><a data-role='button'href='messages.php?view=$view'>Refresh messages</a>";
 ?>
  </div><br>
  </body>

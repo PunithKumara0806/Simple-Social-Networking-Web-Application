@@ -10,7 +10,7 @@ echo <<<_INIT
     <head>
         <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width',initial-scale=1'>
-        <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        <link rel="stylesheet" href="jquery.mobile-1.4.5.min.css" />
         <script src='javascript.js'></script>
         <script 
             src="https://code.jquery.com/jquery-2.2.4.min.js" 
@@ -82,4 +82,3 @@ _MAIN;
         <p class='info'>(You must be logged in to use this app)</p>
         _GUEST;
     }
-?>

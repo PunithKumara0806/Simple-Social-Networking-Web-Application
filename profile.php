@@ -1,7 +1,6 @@
 <?php
     require_once 'header.php';
    
-
     if(!$loggedin) die("</div></body></html>");
 
     echo "<h3>Your Profile</h3>";
@@ -29,9 +28,7 @@
 
     if(!empty($_FILES['image']['name'])){
         $saveto = "$user.jpg";
-        echo "<pre>";
-        print_r($_FILES);
-        echo "</pre>";
+   
         if(!move_uploaded_file($_FILES['image']['tmp_name'], $saveto)){
             echo "<script>alert('not able to move file');</script>";
         };
@@ -71,7 +68,9 @@
             imagedestroy($src);
         }
     }
+    clearstatcache();
     showProfile($user);
+ 
     echo <<<_END
     <form data-ajax='false' method='post'
         action='profile.php' enctype='multipart/form-data'>
@@ -79,6 +78,7 @@
     <textarea name='text'>$text</textarea><br>
     Image: <input type='file' name='image' size='14'>
     <input type='submit' value='Save Profile'>
+
     </form>
     </div><br>
     </body>
