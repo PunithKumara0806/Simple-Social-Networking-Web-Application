@@ -64,6 +64,5 @@ Based on the examples and instruction given in the book [ Learning PHP, MySql an
        ```
  - Once all this is done then start the Apache & MySQL servers in the Ampps and type `localhost` in your browser.
  - The browser will display the front page for the bluenest.
- - 
 
      
