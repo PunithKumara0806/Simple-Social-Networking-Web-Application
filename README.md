@@ -5,6 +5,10 @@ Based on the examples and instruction given in the book [ Learning PHP, MySql an
 ## Some additional features are added like:
   - Searching using substring or keywords.
   - > Using `LIKE` keyword of MySQL and `FULLTEXT` indexing.
+  - You can search for particular words in a message by typing those words in the search bar.
+  - You can also use substring search using `%`substring`%` pattern in the search bar.
+    - Eg. 
+      > `%ath%` **matches** math, maths etcs.
   - Added Trigger to count the number of friend.
 ## Running the project on Ampps:
   - After installing the Ampps and connecting it to database server(here MySQL).
