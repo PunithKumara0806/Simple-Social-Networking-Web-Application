@@ -69,4 +69,10 @@ Based on the examples and instruction given in the book [ Learning PHP, MySql an
  - Once all this is done then start the Apache & MySQL servers in the Ampps and type `localhost` in your browser.
  - The browser will display the front page for the bluenest.
 
-     
+ ## Results
+ - ### Home page <br> <img src="https://github.com/PunithKumara0806/Simple-Social-Networking-Web-Application/blob/master/res/bluenest_home.png" alt="home page"/>
+ - ### Login page <br> <img src="https://github.com/PunithKumara0806/Simple-Social-Networking-Web-Application/blob/master/res/bluenest_login.png" alt="login page"/>
+ - ### Profile page <br> <img src="https://github.com/PunithKumara0806/Simple-Social-Networking-Web-Application/blob/master/res/bluenest_profile_page.png" alt="profile page"/>
+ - ### Members page <br> <img src="https://github.com/PunithKumara0806/Simple-Social-Networking-Web-Application/blob/master/res/bluenest_member_page.png" alt="member's page"/>
+ - ### Friends page <br> <img src="https://github.com/PunithKumara0806/Simple-Social-Networking-Web-Application/blob/master/res/bluenest_friends_page.png" alt="friends page"/>
+ - ### Messages page <br> <img src="https://github.com/PunithKumara0806/Simple-Social-Networking-Web-Application/blob/master/res/bluenest_message_page.png" alt="messages page"/>
